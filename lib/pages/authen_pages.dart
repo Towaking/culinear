@@ -1,3 +1,4 @@
+import 'package:culinear/pages/login.dart';
 import 'package:flutter/material.dart';
 
 class AuthenPages extends StatelessWidget {
@@ -7,7 +8,7 @@ class AuthenPages extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Scaffold(
-        appBar: _appBar(),
+        appBar: _appBar(context),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -35,7 +36,9 @@ class AuthenPages extends StatelessWidget {
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                   backgroundColor: Color.fromARGB(255, 255, 191, 0)
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Login()));
+              },
                 child: Text(
                   'Masuk',
                   style: TextStyle(
@@ -96,9 +99,10 @@ class AuthenPages extends StatelessWidget {
               );
   }
 
-  AppBar _appBar() {
+  AppBar _appBar(BuildContext context) {
     return AppBar(
         backgroundColor: Colors.red,
+        toolbarHeight: MediaQuery.of(context).size.height * 0.06,
         );
   }
 }
