@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class Register extends StatefulWidget {
+  const Register({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Register> createState() => _RegisterState();
 }
 
-class _LoginState extends State<Login> {
+class _RegisterState extends State<Register> {
   bool? _check = true;
   void _onClickCheckedChange(bool value) => setState((){
       _check = !value;
@@ -22,7 +22,7 @@ class _LoginState extends State<Login> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              _navbar_Login(context, arrow_back_sharp),
+              _navbar_Register(context, arrow_back_sharp),
               SizedBox(height: 100,),
               Container(
                 width: MediaQuery.of(context).size.width * 0.8,
@@ -115,7 +115,7 @@ class _LoginState extends State<Login> {
                   backgroundColor: Color.fromARGB(255, 255, 191, 0)
                 ),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Login()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Register()));
               },
                 child: Text(
                   'Masuk',
@@ -129,7 +129,7 @@ class _LoginState extends State<Login> {
             );
   }
 
-  Container _navbar_Login(BuildContext context, IconData arrow_back_sharp) {
+  Container _navbar_Register(BuildContext context, IconData arrow_back_sharp) {
     return Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * 0.09,

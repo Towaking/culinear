@@ -1,4 +1,4 @@
-import 'package:culinear/pages/login.dart';
+import 'package:culinear/pages/register.dart';
 import 'package:flutter/material.dart';
 
 class AuthenPages extends StatelessWidget {
@@ -37,7 +37,7 @@ class AuthenPages extends StatelessWidget {
                   backgroundColor: Color.fromARGB(255, 255, 191, 0)
                 ),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Login()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Register()));
               },
                 child: Text(
                   'Masuk',
