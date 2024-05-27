@@ -1,33 +1,34 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
 
-class Register extends StatefulWidget {
-  const Register({super.key});
-
-  @override
-  State<Register> createState() => _RegisterState();
-}
-
-class _RegisterState extends State<Register> {
-  bool? _check = true;
-  void _onClickCheckedChange(bool value) => setState((){
-      _check = !value;
-  });
+class Login extends StatelessWidget {
+  const Login({super.key});
 
   @override
   Widget build(BuildContext context) {
     const IconData arrow_back_sharp = IconData(0xe793, fontFamily: 'MaterialIcons', matchTextDirection: true);
-    return Container(
-      child: Scaffold(
+    return Scaffold(
         body: SingleChildScrollView(
           child: Column(
             children: [
-              _navbar_Register(context, arrow_back_sharp),
-              SizedBox(height: 100,),
+              _navbar_Login(context, arrow_back_sharp),
+              SizedBox(height: 40,),
               Container(
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: Column(
                   children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Welcome Back',
+                          style: TextStyle(
+                            fontSize: 41,
+                            color: Colors.black
+                          ),
+                        ),
+                      ],
+                    ),
+                SizedBox(height: 80,),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -68,31 +69,7 @@ class _RegisterState extends State<Register> {
                       ],
                     ),
                     SizedBox(height: 40,),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Checkbox(
-                          value: _check,
-                          onChanged: (val){
-                            setState(() {
-                              _check = val;
-                            });
-                          },
-                          visualDensity: VisualDensity.comfortable,
-                        ),
-                        SizedBox(width: 10,),
-                        Expanded(
-                          child: Container(
-                            width: MediaQuery.of(context).size.width * 0.7,
-                            child: Text(
-                              'Saya setuju dengan semua persyaratan yang berlaku di aplikasi ini.',
-                              overflow: TextOverflow.clip,
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
+ 
                     SizedBox(height:120),
                     _lanjut_btn(context),
                   ],
@@ -101,9 +78,9 @@ class _RegisterState extends State<Register> {
             ],
           ),
         ),
-      ),
-    );
-  }
+      );
+    }
+  
 
   Container _lanjut_btn(BuildContext context) {
     return Container(
@@ -115,7 +92,7 @@ class _RegisterState extends State<Register> {
                   backgroundColor: Color.fromARGB(255, 255, 191, 0)
                 ),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Register()));
+
               },
                 child: Text(
                   'Masuk',
@@ -129,7 +106,7 @@ class _RegisterState extends State<Register> {
             );
   }
 
-  Container _navbar_Register(BuildContext context, IconData arrow_back_sharp) {
+  Container _navbar_Login(BuildContext context, IconData arrow_back_sharp) {
     return Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * 0.09,
@@ -159,7 +136,8 @@ class _RegisterState extends State<Register> {
                     Text(
                       'NAVBAR',
                       style: TextStyle(
-                        fontSize: 21
+                        fontSize: 21,
+                        color: Colors.white,
                       ),
                       )
                   ],
@@ -167,4 +145,4 @@ class _RegisterState extends State<Register> {
               ),
             );
   }
-}
+}  

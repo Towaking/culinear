@@ -1,3 +1,4 @@
+import 'package:culinear/pages/Login.dart';
 import 'package:culinear/pages/register.dart';
 import 'package:flutter/material.dart';
 
@@ -37,7 +38,7 @@ class AuthenPages extends StatelessWidget {
                   backgroundColor: Color.fromARGB(255, 255, 191, 0)
                 ),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Register()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Login()));
               },
                 child: Text(
                   'Masuk',
@@ -60,7 +61,7 @@ class AuthenPages extends StatelessWidget {
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                   backgroundColor: Color.fromRGBO(255, 85, 7, 1)
                 ),
-                onPressed: () {},
+                onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (context) => const Register()));},
                 child: Text(
                   'Gabung Dengan Kita ',
                   style: TextStyle(
