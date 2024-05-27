@@ -1,3 +1,4 @@
+import 'package:culinear/pages/home.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatelessWidget {
@@ -92,7 +93,7 @@ class Login extends StatelessWidget {
                   backgroundColor: Color.fromARGB(255, 255, 191, 0)
                 ),
                 onPressed: () {
-
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
               },
                 child: Text(
                   'Masuk',
@@ -109,38 +110,41 @@ class Login extends StatelessWidget {
   Container _navbar_Login(BuildContext context, IconData arrow_back_sharp) {
     return Container(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.09,
+              height: MediaQuery.of(context).size.height * 0.12,
               color: Color.fromARGB(255, 244, 67, 54),
               child: Padding(
                 padding: const EdgeInsets.only(right:20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.only(left: 20,right: 20,top: 15,bottom: 15),
-                        backgroundColor: Colors.transparent,
-                        elevation: 0
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.only(left: 20,right: 20,top: 15,bottom: 15),
+                          backgroundColor: Colors.transparent,
+                          elevation: 0
+                        ),
+                        onPressed: (){
+                          Navigator.pop(context,true);
+                        },
+                        child: Row(
+                          children: [
+                            Icon(arrow_back_sharp,color: Colors.white,size: 31,),
+                            SizedBox(width: 10,),
+                            Text('Kembali',style: TextStyle(color: Colors.white,fontSize: 21),),
+                          ],
+                        )
                       ),
-                      onPressed: (){
-                        Navigator.pop(context,true);
-                      },
-                      child: Row(
-                        children: [
-                          Icon(arrow_back_sharp,color: Colors.white,size: 31,),
-                          SizedBox(width: 10,),
-                          Text('Kembali',style: TextStyle(color: Colors.white,fontSize: 21),),
-                        ],
-                      )
-                    ),
-                    Text(
-                      'NAVBAR',
-                      style: TextStyle(
-                        fontSize: 21,
-                        color: Colors.white,
-                      ),
-                      )
-                  ],
+                      Text(
+                        'NAVBAR',
+                        style: TextStyle(
+                          fontSize: 21,
+                          color: Colors.white,
+                        ),
+                        )
+                    ],
+                  ),
                 ),
               ),
             );
