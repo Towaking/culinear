@@ -1,6 +1,7 @@
 import 'package:culinear/pages/Login.dart';
 import 'package:culinear/pages/register.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class AuthenPages extends StatelessWidget {
   const AuthenPages({super.key});
@@ -15,7 +16,7 @@ class AuthenPages extends StatelessWidget {
             children: [
               SizedBox(height: 50),
               _culinear_img(context),
-              SizedBox(height: 50),
+              SizedBox(height: 80),
               _authen_title(context),
               SizedBox(height: 50),
               _gabung_btn(context),
@@ -91,12 +92,17 @@ class AuthenPages extends StatelessWidget {
     return Container(
               height: MediaQuery.of(context).size.height * 0.24,
               width: MediaQuery.of(context).size.width,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/images/authen_1.png"),
-                    fit: BoxFit.cover
-                  )
-                )
+              // decoration: const BoxDecoration(
+              //   image: DecorationImage(
+              //     image: AssetImage("assets/images/authen_1.png"),
+              //       fit: BoxFit.cover
+              //     )
+              //   )
+              child: Padding(
+                padding: const EdgeInsets.all(28),
+                child: SvgPicture.asset('assets/images/logo Culinear.svg',
+                color: Colors.red,),
+              ),
               );
   }
 
@@ -104,6 +110,6 @@ class AuthenPages extends StatelessWidget {
     return AppBar(
         backgroundColor: Colors.red,
         toolbarHeight: MediaQuery.of(context).size.height * 0.06,
-        );
+      );
   }
 }

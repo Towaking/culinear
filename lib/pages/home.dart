@@ -10,7 +10,6 @@ class HomeScreen extends StatelessWidget {
       body: Container(
         child: Column(
           children: [
-            
             _navbar_Login(context, arrow_back_sharp),
             Padding(
               padding: const EdgeInsets.all(16.0),
