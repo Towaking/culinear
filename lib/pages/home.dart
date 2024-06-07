@@ -1,7 +1,9 @@
+import 'package:culinear/pages/searchResultPage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
   
   static const List<Map<String, String>> foodItems = [
@@ -14,6 +16,20 @@ class HomeScreen extends StatelessWidget {
     {'image': '🍝', 'label': 'Spaghetti'},
     {'image': '🍰', 'label': 'Cake'},
   ];
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+
+  var _searchInput;
+
+  void _setsearchInput(val){
+    setState(() {
+      _searchInput = val;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,23 +46,7 @@ class HomeScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        height: 40,
-                        color: Colors.grey[200],
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 10.0),
-                              child: Text("Search here"),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 10.0),
-                              child: Icon(Icons.filter_list),
-                            ),
-                          ],
-                        ),
-                      ),
+                      _searchBar(context),
                       SizedBox(height: 16),
                       Text(
                         'Rekomen Resto',
@@ -113,14 +113,15 @@ class HomeScreen extends StatelessWidget {
                           crossAxisSpacing: 12.0,
                           mainAxisSpacing: 12.0,
                         ),
-                        itemCount: foodItems.length,
+                        itemCount: HomeScreen.foodItems.length,
                         itemBuilder: (context, index) {
                           return FoodItem(
-                            image: foodItems[index]['image']!,
-                            label: foodItems[index]['label']!,
+                            image: HomeScreen.foodItems[index]['image']!,
+                            label: HomeScreen.foodItems[index]['label']!,
                           );
                         },
                       ),
+                      SizedBox(height: 16),
                     ],
                   ),
                 ),
@@ -128,6 +129,39 @@ class HomeScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Container _searchBar(BuildContext context) {
+     return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height * 0.05,
+      color: Colors.grey[200],
+      child: Row(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 2),
+              child: TextField(
+                onChanged: (value) {
+                  _setsearchInput(value);
+                },
+                onSubmitted: (value){
+                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => Searchresultpage(searchInput: _searchInput,)));
+                },
+                decoration: InputDecoration(
+                  hintText: 'Search Here',
+                  border: InputBorder.none,
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 10.0),
+            child: Icon(Icons.filter_list),
+          ),
+        ],
       ),
     );
   }

@@ -25,8 +25,8 @@ class AuthenPages extends StatelessWidget {
               ],
             ),
         )
-        ),
-      );
+      ),
+    );
   }
 
   Container _masuk_btn(BuildContext context) {
