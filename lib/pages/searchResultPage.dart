@@ -1,3 +1,4 @@
+import 'package:culinear/pages/Resto_List.dart';
 import 'package:flutter/material.dart';
 
 class Searchresultpage extends StatefulWidget {
@@ -153,7 +154,15 @@ class _searchResult extends State<Searchresultpage> {
               itemBuilder: (context, index) {
                 return ListTile(
                   title: Text(items[index]),
-                  trailing: Text('See More'),
+                  trailing: GestureDetector(
+                    onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => RestoList(StringInput: inputString)));
+                    },
+                    child: Text(
+                      'See More',
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                  ),
                 );
               },
             ),

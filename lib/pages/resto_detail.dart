@@ -1,22 +1,36 @@
 import 'package:flutter/material.dart';
 
-class BakeryMenu extends StatelessWidget {
-  final List<Map<String, dynamic>> menuItems = [
-    {"name": "Binus Face", "price": 123999, "image": "assets/binus_face.png"},
-    {"name": "Binus Charcoal", "price": 14999, "image": "assets/binus_charcoal.png"},
-    {"name": "Kue Ijo", "price": 13999, "image": "assets/kue_ijo.png"},
-    {"name": "Diabetes", "price": 214999, "image": "assets/diabetes.png"},
-    {"name": "Sponge Cake", "price": 323999, "image": "assets/sponge_cake.png"},
-    {"name": "Aurora Cake", "price": 189999, "image": "assets/aurora_cake.png"},
-    {"name": "Kebab Tacos", "price": 89999, "image": "assets/kebab_tacos.png"},
-    {"name": "Lulus Kuliah", "price": 550000, "image": "assets/lulus_kuliah.png"},
+class resto_Detail extends StatefulWidget {
+  final String InputString;
+  const resto_Detail({required this.InputString});
+
+  @override
+  State<resto_Detail> createState() => _resto_DetailState();
+}
+
+class _resto_DetailState extends State<resto_Detail> {
+  late String StringInput;
+  late final List<Map<String, dynamic>> menuItems;
+   void initState() {
+    super.initState();
+    StringInput = widget.InputString;
+  menuItems = [
+    {"name": "$StringInput Face", "price": 123999, "image": "assets/images/BINUS_bakery.png"},
+    {"name": "$StringInput Charcoal", "price": 14999, "image": "assets/images/BINUS_bakery.png"},
+    {"name": "Kue Ijo", "price": 13999, "image": "assets/images/BINUS_bakery.png"},
+    {"name": "Diabetes", "price": 214999, "image": "assets/images/BINUS_bakery.png"},
+    {"name": "Sponge Cake", "price": 323999, "image": "assets/images/BINUS_bakery.png"},
+    {"name": "Aurora Cake", "price": 189999, "image": "assets/images/BINUS_bakery.png"},
+    {"name": "Kebab Tacos", "price": 89999, "image": "assets/images/BINUS_bakery.png"},
+    {"name": "Lulus $StringInput", "price": 550000, "image": "assets/images/BINUS_bakery.png"},
   ];
+   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Binus Bakery'),
+        title: Text('$StringInput Bakery'),
       ),
       body: ListView(
         padding: EdgeInsets.all(16),
@@ -37,7 +51,7 @@ class BakeryMenu extends StatelessWidget {
           height: 200,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/binus_bakery_map.png'),
+              image: AssetImage('assets/images/BINUS_bakery.png'),
               fit: BoxFit.cover,
             ),
             borderRadius: BorderRadius.circular(10),
