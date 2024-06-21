@@ -50,7 +50,7 @@ class _RestoListState extends State<RestoList> {
       subtitle: Text('${restaurant['rating']} stars'),
       trailing: GestureDetector(
         onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => resto_Detail(InputString: StringInput,)));
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => resto_Detail(inputString: StringInput,restaurantName:restaurant['name'])));
         },
         child: Text(
           'See More',
@@ -73,17 +73,20 @@ class _RestoListState extends State<RestoList> {
       ),
       body: Column(
         children: [
-          TextField(
-            decoration: InputDecoration(labelText: 'Enter Name Prefix'),
-            onChanged: (value) {
-              setState(() {
-                StringInput = value;
-                // Update the restaurant names with the new input
-                restaurants[0]['name'] = '$StringInput Bakery';
-                restaurants[1]['name'] = '$StringInput Seafood';
-                restaurants[2]['name'] = 'Warteg $StringInput';
-              });
-            },
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              decoration: InputDecoration(labelText: 'Enter Name Prefix'),
+              onChanged: (value) {
+                setState(() {
+                  StringInput = value;
+                  // Update the restaurant names with the new input
+                  restaurants[0]['name'] = '$StringInput Bakery';
+                  restaurants[1]['name'] = '$StringInput Seafood';
+                  restaurants[2]['name'] = 'Warteg $StringInput';
+                });
+              },
+            ),
           ),
           Expanded(
             child: ListView.builder(
