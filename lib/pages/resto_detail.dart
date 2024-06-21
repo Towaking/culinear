@@ -1,45 +1,79 @@
+import 'package:culinear/pages/review_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class resto_Detail extends StatefulWidget {
-  final String InputString;
-  const resto_Detail({required this.InputString});
+  final String inputString, restaurantName;
+  const resto_Detail({required this.inputString, required this.restaurantName});
 
   @override
-  State<resto_Detail> createState() => _resto_DetailState();
+  State<resto_Detail> createState() => _RestoDetailState();
 }
 
-class _resto_DetailState extends State<resto_Detail> {
-  late String StringInput;
-  late final List<Map<String, dynamic>> menuItems;
-   void initState() {
+class _RestoDetailState extends State<resto_Detail> {
+  late String stringInput, restaurantName;
+  late List<Map<String, dynamic>> menuItems;
+  double? latitude;
+  double? longitude;
+  bool isLoading = true;
+
+  @override
+  void initState() {
     super.initState();
-    StringInput = widget.InputString;
-  menuItems = [
-    {"name": "$StringInput Face", "price": 123999, "image": "assets/images/BINUS_bakery.png"},
-    {"name": "$StringInput Charcoal", "price": 14999, "image": "assets/images/BINUS_bakery.png"},
-    {"name": "Kue Ijo", "price": 13999, "image": "assets/images/BINUS_bakery.png"},
-    {"name": "Diabetes", "price": 214999, "image": "assets/images/BINUS_bakery.png"},
-    {"name": "Sponge Cake", "price": 323999, "image": "assets/images/BINUS_bakery.png"},
-    {"name": "Aurora Cake", "price": 189999, "image": "assets/images/BINUS_bakery.png"},
-    {"name": "Kebab Tacos", "price": 89999, "image": "assets/images/BINUS_bakery.png"},
-    {"name": "Lulus $StringInput", "price": 550000, "image": "assets/images/BINUS_bakery.png"},
-  ];
-   }
+    stringInput = widget.inputString;
+    restaurantName = widget.restaurantName;
+    menuItems = [
+      {"name": "$stringInput Face", "price": 123999, "image": "assets/images/BINUS_bakery.png"},
+      {"name": "$stringInput Charcoal", "price": 14999, "image": "assets/images/BINUS_bakery.png"},
+      {"name": "Kue Ijo", "price": 13999, "image": "assets/images/BINUS_bakery.png"},
+      {"name": "Diabetes", "price": 214999, "image": "assets/images/BINUS_bakery.png"},
+      {"name": "Sponge Cake", "price": 323999, "image": "assets/images/BINUS_bakery.png"},
+      {"name": "Aurora Cake", "price": 189999, "image": "assets/images/BINUS_bakery.png"},
+      {"name": "Kebab Tacos", "price": 89999, "image": "assets/images/BINUS_bakery.png"},
+      {"name": "Lulus $stringInput", "price": 550000, "image": "assets/images/BINUS_bakery.png"},
+    ];
+
+    _fetchLocation();
+  }
+
+  Future<void> _fetchLocation() async {
+    if (stringInput.isNotEmpty) {
+      try {
+        List<Location> locations = await locationFromAddress(stringInput);
+        if (locations.isNotEmpty) {
+          final location = locations.first;
+          setState(() {
+            latitude = location.latitude;
+            longitude = location.longitude;
+            isLoading = false;
+          });
+        }
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Place not found')));
+        setState(() {
+          isLoading = false;
+        });
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('$StringInput Bakery'),
+        title: Text('$restaurantName'),
       ),
-      body: ListView(
-        padding: EdgeInsets.all(16),
-        children: [
-          _buildHeader(),
-          SizedBox(height: 16),
-          _buildMenu(),
-        ],
-      ),
+      body: isLoading
+          ? Center(child: CircularProgressIndicator())
+          : ListView(
+              padding: EdgeInsets.all(16),
+              children: [
+                _buildHeader(),
+                SizedBox(height: 16),
+                _buildMenu(),
+              ],
+            ),
     );
   }
 
@@ -47,17 +81,27 @@ class _resto_DetailState extends State<resto_Detail> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          height: 200,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/BINUS_bakery.png'),
-              fit: BoxFit.cover,
-            ),
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
-        SizedBox(height: 8),
+        SizedBox(height: 20,),
+        latitude != null && longitude != null
+            ? Container(
+                height: 200,
+                child: GoogleMap(
+                  initialCameraPosition: CameraPosition(
+                    target: LatLng(latitude!, longitude!),
+                    zoom: 14.0,
+                  ),
+                  markers: {
+                    Marker(
+                      markerId: MarkerId('selected-location'),
+                      position: LatLng(latitude!, longitude!),
+                    ),
+                  },
+                ),
+              )
+            : Container(
+                child: Image.asset("assets/images/BINUS_bakery.png"),
+              ),
+        SizedBox(height: 20),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -77,6 +121,7 @@ class _resto_DetailState extends State<resto_Detail> {
                 GestureDetector(
                   onTap: () {
                     // Navigate to reviews page
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ReviewPage(Resto_name: restaurantName)));
                   },
                   child: Text(
                     'See Review',
