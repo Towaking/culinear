@@ -1,11 +1,6 @@
-import 'package:culinear/pages/profile_edit.dart';
 import 'package:flutter/material.dart';
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 05486954d44cb83e2fbf84b5dcf548e3955263df
-class ProfilePage extends StatelessWidget {
+class EditProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,24 +28,12 @@ class ProfilePage extends StatelessWidget {
                 CircleAvatar(
                   radius: 40,
                   backgroundColor: Colors.white,
-                  child: Image.asset("assets/images/fendy.png"), // Replace with actual image URL
+                  backgroundImage: AssetImage("assets/images/fendy.png"), // Replace with actual image path
                 ),
-                SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Fendy Wijaya',
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.edit),
-                      onPressed: () {
-                        // Handle edit button press
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => EditProfilePage()));
-                      },
-                    ),
-                  ],
+                SizedBox(width: 10),
+                Text(
+                  'Fendy Wijaya',
+                  style: TextStyle(fontSize: 20),
                 ),
               ],
             ),
@@ -98,15 +81,50 @@ class ProfilePage extends StatelessWidget {
                 style: TextStyle(fontSize: 16),
               ),
             ),
-            SizedBox(height: 120),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.orange,
-              ),
-              onPressed: () {
-                // Handle copy userID button press
-              },
-              child: Text('copy userID'),
+            SizedBox(height: 30),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.orange, // Change 'primary' to 'backgroundColor'
+                  ),
+                  onPressed: () {
+                    // Handle cancel button press
+                    Navigator.pop(context, true);
+                  },
+                  child: Text('Cancel'),
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.orange,
+                  ),
+                  onPressed: () {
+                    // Handle save button press
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text('Change Saved'),
+                          content: Text('Your changes have been saved.'),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text('OK'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                    new Future.delayed(new Duration(seconds: 2), () {
+                      Navigator.pop(context);
+                    });
+                  },
+                  child: Text('Save'),
+                ),
+              ],
             ),
           ],
         ),
