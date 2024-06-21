@@ -1,7 +1,7 @@
+import 'package:culinear/pages/profile.dart';
 import 'package:culinear/pages/searchResultPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -134,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Container _searchBar(BuildContext context) {
-     return Container(
+    return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.05,
       color: Colors.grey[200],
@@ -148,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   _setsearchInput(value);
                 },
                 onSubmitted: (value){
-                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => Searchresultpage(searchInput: _searchInput,)));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Searchresultpage(searchInput: _searchInput,)));
                 },
                 decoration: InputDecoration(
                   hintText: 'Search Here',
@@ -189,7 +189,7 @@ Container _navbar_Login(BuildContext context, IconData arrow_back_sharp) {
           children: [
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.only(left: 20, right: 20, top: 15, bottom: 15),
+                padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
                 backgroundColor: Colors.transparent,
                 elevation: 0
               ),
@@ -197,18 +197,19 @@ Container _navbar_Login(BuildContext context, IconData arrow_back_sharp) {
                 Navigator.pop(context, true);
               },
               child: Row(
-                // children: [
-                //   Icon(arrow_back_sharp, color: Colors.white, size: 31),
-                //   SizedBox(width: 10),
-                //   Text('Kembali', style: TextStyle(color: Colors.white, fontSize: 21)),
-                // ],
                 children: [
                   Image.asset('assets/images/Culinear.png', width: 130),
                 ],
               )
             ),
-            Container(
-              child: SvgPicture.asset('assets/images/profile_fendy.svg', width: 40),
+            GestureDetector(
+              onTap: () {  
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Profile()));
+              },
+              child: Container(
+                color: Colors.white,
+                child: Image.asset('assets/images/fendy.png', width: 40),
+              ),
             )
           ],
         ),
