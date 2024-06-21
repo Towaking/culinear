@@ -204,11 +204,7 @@ Container _navbar_Login(BuildContext context, IconData arrow_back_sharp) {
             ),
             GestureDetector(
               onTap: () {  
-<<<<<<< HEAD
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage()));
-=======
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage()));
->>>>>>> 05486954d44cb83e2fbf84b5dcf548e3955263df
               },
                 child: Container(
                 width: 40,

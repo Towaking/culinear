@@ -1,10 +1,6 @@
 import 'package:culinear/pages/profile_edit.dart';
 import 'package:flutter/material.dart';
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 05486954d44cb83e2fbf84b5dcf548e3955263df
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

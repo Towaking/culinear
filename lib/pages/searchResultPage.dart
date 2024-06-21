@@ -1,5 +1,6 @@
 import 'package:culinear/pages/Resto_List.dart';
 import 'package:culinear/pages/campus_List.dart';
+import 'package:culinear/pages/extend_search.dart';
 import 'package:flutter/material.dart';
 
 class Searchresultpage extends StatefulWidget {
@@ -207,7 +208,7 @@ class _searchResult extends State<Searchresultpage> {
                   title: Text(items[index]),
                   trailing: GestureDetector(
                     onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => CampusList(StringInput: inputString)));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => CampusList(StringInput: inputString)));
                     },
                     child: Text(
                       'See More',
@@ -245,6 +246,20 @@ class _searchResult extends State<Searchresultpage> {
             _productCard('Mr. Krabbed', 'assets/images/BINUS_bakery.png'),
           ],
         ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => ExtendSearch(Inputsearch: inputString)));
+              },
+              child: Text(
+                'See More',
+                style: TextStyle(color: Colors.blue),
+              ),
+            ),
+          ],
+        )
       ],
     );
   }
