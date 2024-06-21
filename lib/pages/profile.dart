@@ -1,15 +1,5 @@
 import 'package:flutter/material.dart';
 
-class Profile extends StatelessWidget {
-  @override
-  const Profile({super.key});
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: ProfilePage(),
-    );
-  }
-}
-
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

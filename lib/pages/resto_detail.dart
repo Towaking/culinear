@@ -141,6 +141,7 @@ class _RestoDetailState extends State<resto_Detail> {
           '10:00 - 23:59 WIB\n1.2 km from here',
           style: TextStyle(fontSize: 14, color: Colors.grey),
         ),
+        SizedBox(height: 20),
       ],
     );
   }

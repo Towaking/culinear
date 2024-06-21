@@ -38,7 +38,7 @@ class Login extends StatelessWidget {
                           textAlign: TextAlign.start,
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: 21,                            
+                            fontSize: 21,
                           ),
                         ),
                         SizedBox(height: 10,),

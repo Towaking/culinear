@@ -1,4 +1,5 @@
 import 'package:culinear/pages/Resto_List.dart';
+import 'package:culinear/pages/campus_List.dart';
 import 'package:flutter/material.dart';
 
 class Searchresultpage extends StatefulWidget {
@@ -39,9 +40,9 @@ class _searchResult extends State<Searchresultpage> {
                 children: [
                   _searchBar(context, setSearchInput, inputString),
                   SizedBox(height: 20),
-                  _listSection('List Kampus', ['$inputString University', '$inputString Biversity']),
+                  _listSectionCampus('List Kampus', ['$inputString University', '$inputString Biversity']),
                   SizedBox(height: 10),
-                  _listSection('List Resto', ['$inputString Bakery', '$inputString Seafood']),
+                  _listSectionResto('List Resto', ['$inputString Bakery', '$inputString Seafood']),
                   SizedBox(height: 20),
                   _productSection(),
                 ],
@@ -122,7 +123,7 @@ class _searchResult extends State<Searchresultpage> {
     );
   }
 
-  Widget _listSection(String title, List<String> items) {
+  Widget _listSectionResto(String title, List<String> items) {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey),
@@ -156,7 +157,57 @@ class _searchResult extends State<Searchresultpage> {
                   title: Text(items[index]),
                   trailing: GestureDetector(
                     onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => RestoList(StringInput: inputString)));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => RestoList(StringInput: inputString)));
+                    },
+                    child: Text(
+                      'See More',
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+   Widget _listSectionCampus(String title, List<String> items) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey),
+        borderRadius: BorderRadius.circular(5),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: Offset(0, 3),
+          ),
+        ],
+        color: Colors.white,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 5),
+            ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: items.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(items[index]),
+                  trailing: GestureDetector(
+                    onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => CampusList(StringInput: inputString)));
                     },
                     child: Text(
                       'See More',
@@ -188,10 +239,10 @@ class _searchResult extends State<Searchresultpage> {
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
           children: [
-            _productCard('$inputString Face', 'assets/images/Culinear.png'),
-            _productCard('Grilled $inputString', 'assets/images/Culinear.png'),
-            _productCard('$inputString Charcoal', 'assets/images/Culinear.png'),
-            _productCard('Mr. Krabbed', 'assets/images/Culinear.png'),
+            _productCard('$inputString Face', 'assets/images/BINUS_bakery.png'),
+            _productCard('Grilled $inputString', 'assets/images/BINUS_bakery.png'),
+            _productCard('$inputString Charcoal', 'assets/images/BINUS_bakery.png'),
+            _productCard('Mr. Krabbed', 'assets/images/BINUS_bakery.png'),
           ],
         ),
       ],

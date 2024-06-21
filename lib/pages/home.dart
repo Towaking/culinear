@@ -204,7 +204,7 @@ Container _navbar_Login(BuildContext context, IconData arrow_back_sharp) {
             ),
             GestureDetector(
               onTap: () {  
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Profile()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage()));
               },
               child: Container(
                 color: Colors.white,
