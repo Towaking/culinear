@@ -76,9 +76,10 @@ class _CampusDetailState extends State<CampusDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('$stringInput University'),
+        title: Text('$stringInput University',style: TextStyle(color:Colors.white),),
+        backgroundColor: Colors.red,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back,color: Colors.white,),
           onPressed: () {
             Navigator.pop(context, true);
           },
@@ -91,9 +92,14 @@ class _CampusDetailState extends State<CampusDetail> {
               children: [
                 _buildHeader(),
                 SizedBox(height: 16),
-                Text(
-                  'List Restaurant',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'List Restaurant',
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  ],
                 ),
                 SizedBox(height: 16),
                 _buildNearbyRestaurants(),
@@ -125,46 +131,6 @@ class _CampusDetailState extends State<CampusDetail> {
             : Container(
                 child: Image.asset("assets/images/BINUS_bakery.png"),
               ),
-        SizedBox(height: 20),
-        Text(
-          'Rp 13.999 - Rp 550.000',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        ),
-        SizedBox(height: 4),
-        Row(
-          children: [
-            Icon(Icons.star, color: Colors.orange),
-            SizedBox(width: 4),
-            Text(
-              '4.5/5',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(width: 4),
-            GestureDetector(
-              onTap: () {
-                // Navigate to reviews page
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => ReviewPage(
-                          restaurantName: '$stringInput Bakery',
-                        )));
-              },
-              child: Text(
-                'See Review',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.blue,
-                  decoration: TextDecoration.underline,
-                ),
-              ),
-            ),
-          ],
-        ),
-        SizedBox(height: 4),
-        Text(
-          '10:00 - 23:59 WIB\n1.2 km from here',
-          style: TextStyle(fontSize: 14, color: Colors.grey),
-        ),
-        SizedBox(height: 20),
       ],
     );
   }

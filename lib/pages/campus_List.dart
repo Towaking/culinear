@@ -82,9 +82,10 @@ class _CampusListState extends State<CampusList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('List Kampus'),
+        title: Text('List Kampus',style: TextStyle(color: Colors.white),),
+        backgroundColor: Colors.red,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back,color: Colors.white,),
           onPressed: () {
             Navigator.pop(context, true);
           },
@@ -95,7 +96,7 @@ class _CampusListState extends State<CampusList> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
-              decoration: InputDecoration(labelText: 'Enter Campus Name Prefix'),
+              decoration: InputDecoration(labelText: '$StringInput',contentPadding: EdgeInsets.all(8),),
               onChanged: (value) {
                 setState(() {
                   StringInput = value;

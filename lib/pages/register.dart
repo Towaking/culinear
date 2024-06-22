@@ -1,3 +1,4 @@
+import 'package:culinear/pages/home.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
 
@@ -115,7 +116,7 @@ class _RegisterState extends State<Register> {
                   backgroundColor: Color.fromARGB(255, 255, 191, 0)
                 ),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Register()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
               },
                 child: Text(
                   'Masuk',
@@ -159,9 +160,10 @@ class _RegisterState extends State<Register> {
                         )
                       ),
                       Text(
-                        'NAVBAR',
+                        'CULINEAR',
                         style: TextStyle(
-                          fontSize: 21
+                          fontSize: 21,
+                          color: Colors.white,
                         ),
                         )
                     ],

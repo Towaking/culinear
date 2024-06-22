@@ -62,7 +62,14 @@ class _RestoDetailState extends State<resto_Detail> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('$restaurantName'),
+        title: Text('$restaurantName', style:TextStyle(color: Colors.white)),
+        backgroundColor: Colors.red,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back,color: Colors.white,),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
       ),
       body: isLoading
           ? Center(child: CircularProgressIndicator())

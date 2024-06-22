@@ -45,7 +45,25 @@ class _searchResult extends State<Searchresultpage> {
                   SizedBox(height: 10),
                   _listSectionResto('List Resto', ['$inputString Bakery', '$inputString Seafood']),
                   SizedBox(height: 20),
-                  _productSection(),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5,right: 5),
+                    child: Container(
+                      decoration:  BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
+                        color: Colors.white,
+                        ),
+                      child: _productSection()
+                      ),
+                  ),
                 ],
               ),
             ),
@@ -225,42 +243,45 @@ class _searchResult extends State<Searchresultpage> {
   }
 
   Widget _productSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Produk lainnya',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        ),
-        SizedBox(height: 10),
-        GridView.count(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          crossAxisCount: 2,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-          children: [
-            _productCard('$inputString Face', 'assets/images/BINUS_bakery.png'),
-            _productCard('Grilled $inputString', 'assets/images/BINUS_bakery.png'),
-            _productCard('$inputString Charcoal', 'assets/images/BINUS_bakery.png'),
-            _productCard('Mr. Krabbed', 'assets/images/BINUS_bakery.png'),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => ExtendSearch(Inputsearch: inputString)));
-              },
-              child: Text(
-                'See More',
-                style: TextStyle(color: Colors.blue),
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Produk lainnya',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(height: 10),
+          GridView.count(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            crossAxisCount: 2,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+            children: [
+              _productCard('$inputString Face', 'assets/images/cake.png'),
+              _productCard('Grilled $inputString', 'assets/images/patrick.png'),
+              _productCard('$inputString Charcoal', 'assets/images/charcoal.png'),
+              _productCard('Mr. Krabbed', 'assets/images/crab.png'),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => ExtendSearch(Inputsearch: inputString)));
+                },
+                child: Text(
+                  'See More',
+                  style: TextStyle(color: Colors.blue),
+                ),
               ),
-            ),
-          ],
-        )
-      ],
+            ],
+          )
+        ],
+      ),
     );
   }
 

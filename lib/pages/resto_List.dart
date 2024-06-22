@@ -45,27 +45,44 @@ class _RestoListState extends State<RestoList> {
   }
 
   Widget _restaurantItem(Map<String, dynamic> restaurant) {
-    return ListTile(
+  return Container(
+    margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(5.0),
+      border: Border.all(color: Colors.black, width: 1.0),  // Border
+      boxShadow: [
+        BoxShadow(
+          color: Colors.white24,
+          blurRadius: 4.0,
+          offset: Offset(0, 3),
+        ),
+      ],
+    ),
+    child: ListTile(
       title: Text(restaurant['name']),
-      subtitle: Text('${restaurant['rating']} stars'),
+      subtitle: Text('${restaurant['rating']} ⭐'),
       trailing: GestureDetector(
         onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => resto_Detail(inputString: StringInput,restaurantName:restaurant['name'])));
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => resto_Detail(inputString: StringInput, restaurantName: restaurant['name'])));
         },
         child: Text(
           'See More',
           style: TextStyle(color: Colors.blue),
         ),
       ),
-    );
-  }
+    ),
+  );
+}
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('List Resto'),
+        title: Text('List Resto',style: TextStyle(color: Colors.white),),
+        backgroundColor: Colors.red,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back,color: Colors.white,),
           onPressed: () {
             Navigator.pop(context, true);
           },
@@ -74,9 +91,9 @@ class _RestoListState extends State<RestoList> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(left: 20,right: 20,top: 8,bottom: 8),
             child: TextField(
-              decoration: InputDecoration(labelText: 'Enter Name Prefix'),
+              decoration: InputDecoration(labelText: '$StringInput'),
               onChanged: (value) {
                 setState(() {
                   StringInput = value;
