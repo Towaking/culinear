@@ -1,6 +1,7 @@
 # culinear
 
-A new Flutter project.
+A new Flutter project about a restourant finder that will shows the location of each restourant on nearby University.
+The team consist of 4 peoples, where i'm one of the programmer that handle the apps
 
 ## Getting Started
 
